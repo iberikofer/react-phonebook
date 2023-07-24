@@ -3,7 +3,6 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useAuth } from 'hooks/index';
 import { refreshUser } from 'redux/authentication/operations';
-import { fetchContacts } from 'redux/contacts/operations';
 import Header from './Header/Header';
 import Content from './Content/Content';
 import LogIn from 'pages/Sign in/LogIn';
@@ -18,11 +17,6 @@ export const App = () => {
   const { isLoggedIn, isRefreshing, isLoading } = useAuth();
 
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);

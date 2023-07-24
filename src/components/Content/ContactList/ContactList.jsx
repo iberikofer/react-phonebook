@@ -3,21 +3,30 @@ import {
   getContacts,
   getFilter,
   loadingStatus,
+  errorMesage,
 } from 'redux/contacts/selectors';
-import { deleteContact } from 'redux/contacts/operations';
+import { fetchContacts, deleteContact } from 'redux/contacts/operations';
 import Loader from 'components/Loader/Loader';
 import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useEffect } from 'react';
 
 const ContactList = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
   const isLoading = useSelector(loadingStatus);
+  const error = useSelector(errorMesage);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   const buildMarkup = () => {
     const onDelete = contactId => {
-      dispatch(deleteContact(contactId));
+      dispatch(deleteContact(contactId)).then(() => {
+        dispatch(fetchContacts());
+      });
     };
 
     const filteredContacts =
@@ -29,6 +38,8 @@ const ContactList = () => {
 
     return isLoading ? (
       <Loader />
+    ) : error ? (
+      <p>{error}</p>
     ) : filteredContacts.length > 0 ? (
       filteredContacts.map(contact => (
         <li

@@ -8,6 +8,7 @@ import {
 const initialState = {
   items: [],
   isLoading: false,
+  error: null,
 };
 
 const contactsSlice = createSlice({
