@@ -29,10 +29,12 @@ const ContactForm = () => {
   };
 
   return (
-    <div style={{ width: '20%' }}>
+    <div>
       <form
         onSubmit={handleSubbmit}
         style={{
+          width: '80%',
+          margin: '0 auto',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
@@ -71,6 +73,20 @@ const ContactForm = () => {
           Add contact <PlusIcon />
         </Button>
       </form>
+      <div
+        style={{
+          textAlign: 'center',
+          marginTop: 20,
+          fontSize: 15,
+          color: '#808080',
+        }}
+      >
+        <p>
+          <span style={{ color: '#ff0000', fontWeight: 'bold' }}>Remember</span>
+          , don't do many contact operations at the same time.
+        </p>
+        <p>The server can respond with an error!</p>
+      </div>
     </div>
   );
 };
