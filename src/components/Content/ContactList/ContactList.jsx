@@ -3,10 +3,9 @@ import {
   getContacts,
   getFilter,
   loadingStatus,
-  errorMesage,
 } from 'redux/contacts/selectors';
 import { deleteContact } from 'redux/contacts/operations';
-import { Puff } from 'react-loader-spinner';
+import Loader from 'components/Loader/Loader';
 import { Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -14,7 +13,6 @@ const ContactList = () => {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
   const isLoading = useSelector(loadingStatus);
-  const error = useSelector(errorMesage);
   const dispatch = useDispatch();
 
   const buildMarkup = () => {
@@ -30,19 +28,7 @@ const ContactList = () => {
         : [];
 
     return isLoading ? (
-      <Puff
-        height="100"
-        width="100"
-        color="#FFFFFF"
-        secondaryColor="#FFFFFF"
-        radius="12.5"
-        ariaLabel="mutating-dots-loading"
-        wrapperStyle={{}}
-        wrapperClass=""
-        visible={true}
-      />
-    ) : error ? (
-      <p>{error}</p>
+      <Loader />
     ) : filteredContacts.length > 0 ? (
       filteredContacts.map(contact => (
         <li
