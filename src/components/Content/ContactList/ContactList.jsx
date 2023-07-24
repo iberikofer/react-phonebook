@@ -24,9 +24,7 @@ const ContactList = () => {
 
   const buildMarkup = () => {
     const onDelete = contactId => {
-      dispatch(deleteContact(contactId)).then(() => {
-        dispatch(fetchContacts());
-      });
+      dispatch(deleteContact(contactId));
     };
 
     const filteredContacts =
