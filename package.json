@@ -1,7 +1,7 @@
 {
 	"name": "react-phonebook",
 	"version": "0.1.0",
-	"private": false,
+	"private": true,
 	"homepage": "https://iberikofer.github.io/react-phonebook/",
 	"dependencies": {
 		"@emotion/react": "^11.11.1",
