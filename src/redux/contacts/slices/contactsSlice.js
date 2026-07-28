@@ -14,45 +14,45 @@ const initialState = {
 const contactsSlice = createSlice({
   name: 'CONTACTS',
   initialState,
-  extraReducers: {
-    [fetchContacts.pending](state) {
-      state.isLoading = true;
-    },
-    [fetchContacts.fulfilled](state, { payload }) {
-      state.isLoading = false;
-      state.error = null;
-      state.items = payload;
-    },
-    [fetchContacts.rejected](state, { payload }) {
-      state.isLoading = false;
-      state.error = payload;
-    },
-
-    [addContact.pending](state) {
-      state.isLoading = true;
-    },
-    [addContact.fulfilled](state, { payload }) {
-      state.isLoading = false;
-      state.error = null;
-      state.items.push(payload);
-    },
-    [addContact.rejected](state, { payload }) {
-      state.isLoading = false;
-      state.error = payload;
-    },
-
-    [deleteContact.pending](state) {
-      state.isLoading = true;
-    },
-    [deleteContact.fulfilled](state, { payload }) {
-      state.isLoading = false;
-      state.error = null;
-      state.items = state.items.filter(contact => contact.id !== payload);
-    },
-    [deleteContact.rejected](state, { payload }) {
-      state.isLoading = false;
-      state.error = payload;
-    },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchContacts.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(fetchContacts.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items = payload;
+      })
+      .addCase(fetchContacts.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(addContact.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(addContact.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        state.items.push(payload);
+      })
+      .addCase(addContact.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      })
+      .addCase(deleteContact.pending, state => {
+        state.isLoading = true;
+      })
+      .addCase(deleteContact.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = null;
+        const deletedId = typeof payload === 'object' && payload?.id ? payload.id : payload;
+        state.items = state.items.filter(contact => contact.id !== deletedId);
+      })
+      .addCase(deleteContact.rejected, (state, { payload }) => {
+        state.isLoading = false;
+        state.error = payload;
+      });
   },
 });
 

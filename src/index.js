@@ -11,7 +11,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<PersistGate loading={null} persistor={persistor}>
-				<BrowserRouter basename="/react-phonebook">
+				<BrowserRouter
+					basename="/react-phonebook"
+					future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+				>
 					<App />
 				</BrowserRouter>
 			</PersistGate>
