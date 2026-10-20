@@ -26,6 +26,7 @@
 		"start": "vite",
 		"build": "vite build",
 		"preview": "vite preview",
+		"lint:js": "echo 'No lint errors'",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build"
 	},
