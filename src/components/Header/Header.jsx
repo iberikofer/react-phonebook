@@ -20,11 +20,11 @@ const Header = () => {
           position: 'sticky',
           top: 0,
           zIndex: 1100,
-          background: 'rgba(15, 23, 42, 0.85)',
-          backdropFilter: 'blur(16px)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
-          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
-          py: 1.5,
+          background: 'rgba(20, 23, 33, 0.92)',
+          backdropFilter: 'blur(12px)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
+          py: 1.25,
         }}
       >
         <Container maxWidth="lg">
@@ -51,61 +51,76 @@ const Header = () => {
             >
               <Box
                 sx={{
-                  width: 42,
-                  height: 42,
-                  borderRadius: '12px',
-                  background: 'linear-gradient(135deg, #6366f1, #a855f7, #ec4899)',
+                  width: 40,
+                  height: 40,
+                  borderRadius: '10px',
+                  background: 'linear-gradient(135deg, #1f2333, #141721)',
+                  border: '1px solid rgba(245, 158, 11, 0.35)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  boxShadow: '0 4px 14px rgba(168, 85, 247, 0.4)',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(245, 158, 11, 0.2)',
                 }}
               >
-                <MenuBookIcon sx={{ color: '#fff', fontSize: 24 }} />
+                <MenuBookIcon sx={{ color: '#fbbf24', fontSize: 22 }} />
               </Box>
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: 800,
-                  background: 'linear-gradient(135deg, #f8fafc 30%, #c084fc 100%)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  letterSpacing: '-0.5px',
-                  fontSize: { xs: '1.1rem', sm: '1.3rem' },
-                }}
-              >
-                Phonebook
-              </Typography>
+              <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontWeight: 800,
+                    color: '#f8fafc',
+                    letterSpacing: '-0.03em',
+                    fontSize: { xs: '1.1rem', sm: '1.25rem' },
+                    lineHeight: 1.1,
+                  }}
+                >
+                  Phonebook
+                </Typography>
+                <Typography
+                  variant="caption"
+                  sx={{
+                    color: '#f59e0b',
+                    fontSize: '0.68rem',
+                    fontWeight: 700,
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
+                    fontFamily: "'JetBrains Mono', monospace",
+                  }}
+                >
+                  Directory Ledger
+                </Typography>
+              </Box>
             </Box>
 
             {/* Navigation Menu */}
-            <Box component="nav" sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 2 } }}>
+            <Box component="nav" sx={{ display: 'flex', alignItems: 'center', gap: { xs: 1, sm: 1.5 } }}>
               <NavLink to="/" end className="nav-link">
-                <HomeIcon fontSize="small" />
+                <HomeIcon fontSize="small" sx={{ opacity: 0.8 }} />
                 <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Home</Box>
               </NavLink>
 
               {isLoggedIn ? (
                 <>
                   <NavLink to="/contacts" className="nav-link">
-                    <ContactPhoneIcon fontSize="small" />
-                    <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Contacts</Box>
+                    <ContactPhoneIcon fontSize="small" sx={{ opacity: 0.8 }} />
+                    <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Directory</Box>
                   </NavLink>
                   <UserMenu />
                 </>
               ) : (
                 <>
                   <NavLink to="/contacts" className="nav-link">
-                    <ContactPhoneIcon fontSize="small" />
-                    <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Contacts</Box>
+                    <ContactPhoneIcon fontSize="small" sx={{ opacity: 0.8 }} />
+                    <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>Directory</Box>
                   </NavLink>
                   <NavLink to="/login" className="nav-link">
-                    <LoginIcon fontSize="small" />
-                    <Box component="span">Sign IN</Box>
+                    <LoginIcon fontSize="small" sx={{ opacity: 0.8 }} />
+                    <Box component="span">Sign In</Box>
                   </NavLink>
                   <NavLink to="/register" className="nav-link">
-                    <PersonAddIcon fontSize="small" />
-                    <Box component="span">Sign UP</Box>
+                    <PersonAddIcon fontSize="small" sx={{ opacity: 0.8 }} />
+                    <Box component="span">Sign Up</Box>
                   </NavLink>
                 </>
               )}

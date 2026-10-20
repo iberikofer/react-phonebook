@@ -2,40 +2,32 @@
 	"name": "react-phonebook",
 	"version": "0.1.0",
 	"private": false,
+	"type": "module",
 	"homepage": "https://iberikofer.github.io/react-phonebook/",
 	"dependencies": {
-		"@emotion/react": "^11.11.1",
-		"@emotion/styled": "^11.11.0",
-		"@mui/icons-material": "^5.14.1",
-		"@mui/material": "^5.14.1",
-		"@reduxjs/toolkit": "^1.9.5",
-		"@testing-library/jest-dom": "^5.16.3",
-		"@testing-library/react": "^14.0.0",
+		"@emotion/react": "^11.14.0",
+		"@emotion/styled": "^11.14.0",
+		"@mui/icons-material": "^5.16.14",
+		"@mui/material": "^5.16.14",
+		"@reduxjs/toolkit": "^1.9.7",
+		"@testing-library/jest-dom": "^5.17.0",
+		"@testing-library/react": "^14.3.1",
 		"@testing-library/user-event": "^13.5.0",
-		"axios": "^1.4.0",
-		"react": "^18.1.0",
-		"react-dom": "^18.1.0",
+		"axios": "^1.7.9",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
 		"react-loader-spinner": "^5.3.4",
-		"react-redux": "^8.1.1",
-		"react-router-dom": "^6.14.2",
-		"react-scripts": "5.0.1",
-		"redux-persist": "^6.0.0",
-		"web-vitals": "^2.1.3"
+		"react-redux": "^8.1.3",
+		"react-router-dom": "^6.28.2",
+		"redux-persist": "^6.0.0"
 	},
 	"scripts": {
-		"start": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject",
-		"lint:js": "eslint src/**/*.{js,jsx}",
+		"dev": "vite",
+		"start": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d build"
-	},
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
 	},
 	"browserslist": {
 		"production": [
@@ -50,6 +42,8 @@
 		]
 	},
 	"devDependencies": {
-		"gh-pages": "^6.3.0"
+		"@vitejs/plugin-react": "^4.3.4",
+		"gh-pages": "^6.3.0",
+		"vite": "^5.4.14"
 	}
 }

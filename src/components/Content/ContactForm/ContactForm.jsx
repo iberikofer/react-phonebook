@@ -8,11 +8,10 @@ import {
   Button,
   Typography,
   InputAdornment,
-  Alert,
 } from '@mui/material';
-import PersonIcon from '@mui/icons-material/Person';
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-import AddIcon from '@mui/icons-material/Add';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 const ContactForm = () => {
   const contacts = useSelector(getContacts);
@@ -31,7 +30,7 @@ const ContactForm = () => {
       );
 
     if (checkPhonebookName) {
-      window.alert(`${name} is already in your contacts.`);
+      window.alert(`${name} is already recorded in your contacts.`);
       return;
     }
 
@@ -41,15 +40,15 @@ const ContactForm = () => {
   };
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+    <Box component="form" onSubmit={handleSubmit} sx={{ display: 'flex', flexDirection: 'column', gap: 2.25 }}>
       <TextField
         fullWidth
         required
-        label="Name"
+        label="Contact Name"
         name="name"
         value={name}
         onChange={e => setName(e.target.value)}
-        placeholder="Adrian Soprano"
+        placeholder="e.g. Adrian Soprano"
         variant="outlined"
         inputProps={{
           pattern: "^[a-zA-Zа-яА-Я]+(([' \\-][a-zA-Zа-яА-Я])?[a-zA-Zа-яА-Я]*)*$",
@@ -58,21 +57,21 @@ const ContactForm = () => {
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <PersonIcon sx={{ color: '#a855f7' }} />
+              <PersonOutlineIcon sx={{ color: '#fbbf24', fontSize: '1.2rem' }} />
             </InputAdornment>
           ),
         }}
         sx={{
           '& .MuiOutlinedInput-root': {
             color: '#f8fafc',
-            borderRadius: '14px',
-            backgroundColor: 'rgba(15, 23, 42, 0.6)',
-            '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.15)' },
-            '&:hover fieldset': { borderColor: '#a855f7' },
-            '&.Mui-focused fieldset': { borderColor: '#a855f7' },
+            borderRadius: '10px',
+            backgroundColor: '#161925',
+            '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.1)' },
+            '&:hover fieldset': { borderColor: 'rgba(245, 158, 11, 0.4)' },
+            '&.Mui-focused fieldset': { borderColor: '#f59e0b' },
           },
-          '& .MuiInputLabel-root': { color: '#94a3b8' },
-          '& .MuiInputLabel-root.Mui-focused': { color: '#c084fc' },
+          '& .MuiInputLabel-root': { color: '#94a3b8', fontSize: '0.9rem' },
+          '& .MuiInputLabel-root.Mui-focused': { color: '#fbbf24' },
         }}
       />
 
@@ -80,11 +79,11 @@ const ContactForm = () => {
         fullWidth
         required
         type="tel"
-        label="Phone Number"
+        label="Telephone Number"
         name="number"
         value={number}
         onChange={e => setNumber(e.target.value)}
-        placeholder="+380 97 123 4567"
+        placeholder="e.g. +380 (97) 123-4567"
         variant="outlined"
         inputProps={{
           pattern: "\\+?\\d{1,4}?[\\-.\\s]?\\(?\\d{1,3}?\\)?[\\-.\\s]?\\d{1,4}[\\-.\\s]?\\d{1,4}[\\-.\\s]?\\d{1,9}",
@@ -93,21 +92,21 @@ const ContactForm = () => {
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <LocalPhoneIcon sx={{ color: '#a855f7' }} />
+              <LocalPhoneOutlinedIcon sx={{ color: '#fbbf24', fontSize: '1.2rem' }} />
             </InputAdornment>
           ),
         }}
         sx={{
           '& .MuiOutlinedInput-root': {
             color: '#f8fafc',
-            borderRadius: '14px',
-            backgroundColor: 'rgba(15, 23, 42, 0.6)',
-            '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.15)' },
-            '&:hover fieldset': { borderColor: '#a855f7' },
-            '&.Mui-focused fieldset': { borderColor: '#a855f7' },
+            borderRadius: '10px',
+            backgroundColor: '#161925',
+            '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.1)' },
+            '&:hover fieldset': { borderColor: 'rgba(245, 158, 11, 0.4)' },
+            '&.Mui-focused fieldset': { borderColor: '#f59e0b' },
           },
-          '& .MuiInputLabel-root': { color: '#94a3b8' },
-          '& .MuiInputLabel-root.Mui-focused': { color: '#c084fc' },
+          '& .MuiInputLabel-root': { color: '#94a3b8', fontSize: '0.9rem' },
+          '& .MuiInputLabel-root.Mui-focused': { color: '#fbbf24' },
         }}
       />
 
@@ -115,47 +114,55 @@ const ContactForm = () => {
         type="submit"
         fullWidth
         variant="contained"
-        startIcon={<AddIcon />}
+        startIcon={<AddCircleOutlineIcon />}
         sx={{
-          py: 1.4,
-          borderRadius: '14px',
+          mt: 0.5,
+          py: 1.35,
+          borderRadius: '10px',
           textTransform: 'none',
-          fontWeight: 800,
-          fontSize: '1rem',
-          background: 'linear-gradient(135deg, #6366f1, #a855f7, #ec4899)',
-          boxShadow: '0 8px 24px rgba(168, 85, 247, 0.4)',
+          fontWeight: 700,
+          fontSize: '0.95rem',
+          backgroundColor: '#f59e0b',
+          color: '#0c0d12',
+          boxShadow: '0 4px 14px rgba(245, 158, 11, 0.25)',
           '&:hover': {
-            background: 'linear-gradient(135deg, #4f46e5, #9333ea, #db2777)',
-            boxShadow: '0 10px 28px rgba(168, 85, 247, 0.55)',
+            backgroundColor: '#d97706',
+            boxShadow: '0 6px 18px rgba(245, 158, 11, 0.4)',
           },
         }}
       >
-        Add Contact
+        Record Contact in Ledger
       </Button>
 
-      <Alert
-        severity="info"
+      {/* Directory Entry Note */}
+      <Box
         sx={{
-          mt: 1,
-          borderRadius: '12px',
-          backgroundColor: 'rgba(56, 189, 248, 0.1) !important',
-          color: '#93c5fd !important',
-          border: '1px solid rgba(56, 189, 248, 0.2) !important',
-          fontSize: '0.825rem',
-          boxShadow: 'none !important',
-          '&:hover': {
-            backgroundColor: 'rgba(56, 189, 248, 0.1) !important',
-            borderColor: 'rgba(56, 189, 248, 0.2) !important',
-            boxShadow: 'none !important',
-            transform: 'none !important',
-          },
-          '& .MuiAlert-icon': { color: '#38bdf8' },
+          p: 1.75,
+          borderRadius: '10px',
+          bgcolor: 'rgba(255, 255, 255, 0.03)',
+          border: '1px solid rgba(255, 255, 255, 0.06)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 0.5,
         }}
       >
-        <Typography variant="caption" sx={{ display: 'block', fontWeight: 600 }}>
-          Tip: Avoid rapid duplicate operations to prevent server rate limits.
+        <Typography
+          variant="caption"
+          sx={{
+            fontFamily: "'JetBrains Mono', monospace",
+            color: '#fbbf24',
+            fontWeight: 700,
+            fontSize: '0.72rem',
+            letterSpacing: '0.05em',
+            textTransform: 'uppercase',
+          }}
+        >
+          ENTRY GUIDELINES
         </Typography>
-      </Alert>
+        <Typography variant="caption" sx={{ color: '#94a3b8', lineHeight: 1.5, fontSize: '0.78rem' }}>
+          Names are indexed alphabetically in the directory. You can use international formatting with country and area codes.
+        </Typography>
+      </Box>
     </Box>
   );
 };

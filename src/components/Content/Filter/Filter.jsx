@@ -3,7 +3,7 @@ import { setFilter } from 'redux/contacts/slices/filterSlice';
 import { getFilter } from 'redux/contacts/selectors';
 import { Box, TextField, InputAdornment, IconButton } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-import ClearIcon from '@mui/icons-material/Clear';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -25,19 +25,20 @@ const Filter = () => {
         name="search"
         value={filter || ''}
         onChange={handleInputChange}
-        placeholder="Find contacts by name..."
-        label="Search Contacts"
+        placeholder="Filter by name or letter..."
+        label="Search Directory"
+        size="small"
         variant="outlined"
         InputProps={{
           startAdornment: (
             <InputAdornment position="start">
-              <SearchIcon sx={{ color: '#38bdf8' }} />
+              <SearchIcon sx={{ color: '#fbbf24', fontSize: '1.2rem' }} />
             </InputAdornment>
           ),
           endAdornment: filter ? (
             <InputAdornment position="end">
               <IconButton onClick={handleClear} edge="end" size="small" sx={{ color: '#94a3b8' }}>
-                <ClearIcon fontSize="small" />
+                <CloseIcon fontSize="small" />
               </IconButton>
             </InputAdornment>
           ) : null,
@@ -45,14 +46,14 @@ const Filter = () => {
         sx={{
           '& .MuiOutlinedInput-root': {
             color: '#f8fafc',
-            borderRadius: '14px',
-            backgroundColor: 'rgba(15, 23, 42, 0.6)',
-            '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.15)' },
-            '&:hover fieldset': { borderColor: '#38bdf8' },
-            '&.Mui-focused fieldset': { borderColor: '#38bdf8' },
+            borderRadius: '10px',
+            backgroundColor: '#161925',
+            '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.1)' },
+            '&:hover fieldset': { borderColor: 'rgba(245, 158, 11, 0.4)' },
+            '&.Mui-focused fieldset': { borderColor: '#f59e0b' },
           },
-          '& .MuiInputLabel-root': { color: '#94a3b8' },
-          '& .MuiInputLabel-root.Mui-focused': { color: '#38bdf8' },
+          '& .MuiInputLabel-root': { color: '#94a3b8', fontSize: '0.9rem' },
+          '& .MuiInputLabel-root.Mui-focused': { color: '#fbbf24' },
         }}
       />
     </Box>

@@ -27,20 +27,20 @@ const UserMenu = () => {
         gap: 1.5,
         ml: { xs: 0.5, sm: 1.5 },
         p: '4px 10px 4px 6px',
-        borderRadius: '30px',
-        background: 'rgba(255, 255, 255, 0.05)',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
+        borderRadius: '24px',
+        background: '#191c28',
+        border: '1px solid rgba(255, 255, 255, 0.08)',
       }}
     >
       <Avatar
         sx={{
-          width: 34,
-          height: 34,
-          fontSize: '0.9rem',
+          width: 32,
+          height: 32,
+          fontSize: '0.85rem',
           fontWeight: 700,
-          background: 'linear-gradient(135deg, #a855f7, #ec4899)',
-          color: '#fff',
-          boxShadow: '0 2px 8px rgba(168, 85, 247, 0.3)',
+          background: 'linear-gradient(135deg, #f59e0b, #b45309)',
+          color: '#0c0d12',
+          border: '1px solid rgba(255, 255, 255, 0.2)',
         }}
       >
         {getInitial(displayName)}
@@ -56,6 +56,7 @@ const UserMenu = () => {
           overflow: 'hidden',
           textOverflow: 'ellipsis',
           whiteSpace: 'nowrap',
+          fontSize: '0.875rem',
         }}
       >
         {displayName}
@@ -63,25 +64,27 @@ const UserMenu = () => {
 
       <Button
         onClick={handleLogOut}
-        variant="contained"
+        variant="outlined"
         size="small"
-        startIcon={<LogoutIcon sx={{ fontSize: '1.1rem !important' }} />}
+        startIcon={<LogoutIcon sx={{ fontSize: '1rem !important' }} />}
         sx={{
-          borderRadius: '20px',
+          borderRadius: '8px',
           textTransform: 'none',
-          fontWeight: 700,
-          fontSize: '0.825rem',
-          px: 2,
-          py: 0.5,
-          background: 'linear-gradient(135deg, #ef4444, #dc2626)',
-          boxShadow: '0 4px 12px rgba(220, 38, 38, 0.3)',
+          fontWeight: 600,
+          fontSize: '0.8rem',
+          px: 1.5,
+          py: 0.4,
+          color: '#f87171',
+          borderColor: 'rgba(248, 113, 113, 0.25)',
+          backgroundColor: 'rgba(239, 68, 68, 0.06)',
           '&:hover': {
-            background: 'linear-gradient(135deg, #dc2626, #b91c1c)',
-            boxShadow: '0 6px 16px rgba(220, 38, 38, 0.45)',
+            borderColor: 'rgba(248, 113, 113, 0.5)',
+            backgroundColor: 'rgba(239, 68, 68, 0.15)',
+            color: '#fca5a5',
           },
         }}
       >
-        Sign OUT
+        Log out
       </Button>
     </Box>
   );

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { Container, Paper, Typography, Button } from '@mui/material';
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 export const NotFound = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ export const NotFound = () => {
   return (
     <Container maxWidth="sm" sx={{ pt: 10 }}>
       <Paper
-        className="glass-card"
+        className="phonebook-card"
         sx={{
           p: 5,
           textAlign: 'center',
@@ -26,12 +26,12 @@ export const NotFound = () => {
           gap: 2,
         }}
       >
-        <ErrorOutlineIcon sx={{ fontSize: 64, color: '#f87171' }} />
-        <Typography variant="h4" sx={{ fontWeight: 800, color: '#f8fafc' }}>
-          404 - Page Not Found
+        <MenuBookIcon sx={{ fontSize: 56, color: '#f59e0b', opacity: 0.8 }} />
+        <Typography variant="h4" sx={{ fontWeight: 800, color: '#f8fafc', letterSpacing: '-0.02em' }}>
+          Page Not In Directory
         </Typography>
         <Typography variant="body1" sx={{ color: '#94a3b8' }}>
-          You will be automatically redirected to the home page in 5 seconds.
+          You will be automatically redirected to the directory ledger in 5 seconds.
         </Typography>
         <Button
           component={RouterLink}
@@ -39,13 +39,17 @@ export const NotFound = () => {
           variant="contained"
           sx={{
             mt: 2,
-            borderRadius: '12px',
+            borderRadius: '10px',
             textTransform: 'none',
             fontWeight: 700,
-            background: 'linear-gradient(135deg, #6366f1, #a855f7)',
+            backgroundColor: '#f59e0b',
+            color: '#0c0d12',
+            '&:hover': {
+              backgroundColor: '#d97706',
+            },
           }}
         >
-          Return to Home Now
+          Return to Directory
         </Button>
       </Paper>
     </Container>

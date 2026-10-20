@@ -15,27 +15,27 @@ import {
   InputAdornment,
   IconButton,
 } from '@mui/material';
-import EmailIcon from '@mui/icons-material/Email';
-import LockIcon from '@mui/icons-material/Lock';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import LoginIcon from '@mui/icons-material/Login';
+import VpnKeyOutlinedIcon from '@mui/icons-material/VpnKeyOutlined';
 
 const textFieldSx = {
   '& .MuiOutlinedInput-root': {
     color: '#f8fafc',
-    borderRadius: '14px',
-    backgroundColor: 'rgba(30, 41, 59, 0.7)',
-    '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.15)' },
-    '&:hover fieldset': { borderColor: '#38bdf8' },
-    '&.Mui-focused fieldset': { borderColor: '#38bdf8' },
+    borderRadius: '10px',
+    backgroundColor: '#161925',
+    '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.1)' },
+    '&:hover fieldset': { borderColor: 'rgba(245, 158, 11, 0.4)' },
+    '&.Mui-focused fieldset': { borderColor: '#f59e0b' },
     '& input:-webkit-autofill': {
-      WebkitBoxShadow: '0 0 0 1000px #1e293b inset !important',
+      WebkitBoxShadow: '0 0 0 1000px #161925 inset !important',
       WebkitTextFillColor: '#f8fafc !important',
     },
   },
-  '& .MuiInputLabel-root': { color: '#94a3b8' },
-  '& .MuiInputLabel-root.Mui-focused': { color: '#38bdf8' },
+  '& .MuiInputLabel-root': { color: '#94a3b8', fontSize: '0.9rem' },
+  '& .MuiInputLabel-root.Mui-focused': { color: '#fbbf24' },
 };
 
 const LogIn = () => {
@@ -68,7 +68,7 @@ const LogIn = () => {
     <Container maxWidth="xs" sx={{ mt: { xs: 3, sm: 6 }, mb: 6 }}>
       <Paper
         elevation={0}
-        className="glass-card"
+        className="phonebook-card"
         sx={{
           p: { xs: 3, sm: 4 },
           display: 'flex',
@@ -78,26 +78,26 @@ const LogIn = () => {
       >
         <Box
           sx={{
-            width: 56,
-            height: 56,
-            borderRadius: '16px',
-            background: 'linear-gradient(135deg, #38bdf8, #6366f1)',
+            width: 50,
+            height: 50,
+            borderRadius: '12px',
+            background: 'rgba(245, 158, 11, 0.1)',
+            border: '1px solid rgba(245, 158, 11, 0.3)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             mb: 2,
-            boxShadow: '0 8px 20px rgba(56, 189, 248, 0.35)',
           }}
         >
-          <LoginIcon sx={{ color: '#fff', fontSize: 30 }} />
+          <VpnKeyOutlinedIcon sx={{ color: '#fbbf24', fontSize: 26 }} />
         </Box>
 
-        <Typography variant="h5" sx={{ fontWeight: 800, color: '#f8fafc', mb: 1, textAlign: 'center' }}>
-          Welcome Back
+        <Typography variant="h5" sx={{ fontWeight: 800, color: '#f8fafc', mb: 0.75, textAlign: 'center', letterSpacing: '-0.02em' }}>
+          Directory Access
         </Typography>
 
-        <Typography variant="body2" sx={{ color: '#94a3b8', mb: 3, textAlign: 'center' }}>
-          Please sign in to access your phonebook
+        <Typography variant="body2" sx={{ color: '#94a3b8', mb: 3, textAlign: 'center', fontSize: '0.875rem' }}>
+          Sign in to unlock and synchronize your contacts
         </Typography>
 
         {isAuthError && (
@@ -106,19 +106,19 @@ const LogIn = () => {
             onClose={() => dispatch(clearAuthError())}
             sx={{
               width: '100%',
-              mb: 3,
-              borderRadius: '12px',
-              backgroundColor: 'rgba(239, 68, 68, 0.15)',
+              mb: 2.5,
+              borderRadius: '8px',
+              backgroundColor: 'rgba(239, 68, 68, 0.12)',
               color: '#fca5a5',
               border: '1px solid rgba(239, 68, 68, 0.3)',
-              '& .MuiAlert-icon': { color: '#f87171' },
+              fontSize: '0.825rem',
             }}
           >
-            Invalid email or password. Please check your credentials and try again.
+            Invalid email or password. Please verify credentials.
           </Alert>
         )}
 
-        <Box component="form" onSubmit={handleLogIn} sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+        <Box component="form" onSubmit={handleLogIn} sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 2.25 }}>
           <TextField
             fullWidth
             required
@@ -128,11 +128,11 @@ const LogIn = () => {
             value={email}
             onChange={e => setEmail(e.target.value)}
             variant="outlined"
-            placeholder="example@mail.com"
+            placeholder="e.g. adrian@mail.com"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <EmailIcon sx={{ color: '#38bdf8' }} />
+                  <EmailOutlinedIcon sx={{ color: '#fbbf24', fontSize: '1.2rem' }} />
                 </InputAdornment>
               ),
             }}
@@ -151,7 +151,7 @@ const LogIn = () => {
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <LockIcon sx={{ color: '#38bdf8' }} />
+                  <LockOutlinedIcon sx={{ color: '#fbbf24', fontSize: '1.2rem' }} />
                 </InputAdornment>
               ),
               endAdornment: (
@@ -159,9 +159,10 @@ const LogIn = () => {
                   <IconButton
                     onClick={() => setShowPassword(!showPassword)}
                     edge="end"
+                    size="small"
                     sx={{ color: '#94a3b8' }}
                   >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                    {showPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
                   </IconButton>
                 </InputAdornment>
               ),
@@ -175,40 +176,42 @@ const LogIn = () => {
             variant="contained"
             disabled={isLoading}
             sx={{
-              mt: 1,
-              py: 1.4,
-              borderRadius: '14px',
+              mt: 0.5,
+              py: 1.35,
+              borderRadius: '10px',
               textTransform: 'none',
-              fontWeight: 800,
-              fontSize: '1rem',
-              background: 'linear-gradient(135deg, #38bdf8, #6366f1)',
-              boxShadow: '0 8px 24px rgba(56, 189, 248, 0.4)',
+              fontWeight: 700,
+              fontSize: '0.95rem',
+              backgroundColor: '#f59e0b',
+              color: '#0c0d12',
+              boxShadow: '0 4px 14px rgba(245, 158, 11, 0.25)',
               '&:hover': {
-                background: 'linear-gradient(135deg, #0284c7, #4f46e5)',
-                boxShadow: '0 10px 28px rgba(56, 189, 248, 0.55)',
+                backgroundColor: '#d97706',
+                boxShadow: '0 6px 18px rgba(245, 158, 11, 0.4)',
               },
             }}
           >
-            {isLoading ? 'Signing in...' : 'Sign In'}
+            {isLoading ? 'Authenticating...' : 'Sign In to Directory'}
           </Button>
         </Box>
 
         <Box sx={{ mt: 3, display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Typography variant="body2" sx={{ color: '#94a3b8' }}>
-            Don't have an account?
+          <Typography variant="body2" sx={{ color: '#94a3b8', fontSize: '0.85rem' }}>
+            No personal account yet?
           </Typography>
           <Button
             onClick={handleRegisterInNavigate}
             sx={{
-              color: '#c084fc',
+              color: '#fbbf24',
               fontWeight: 700,
               textTransform: 'none',
               p: 0,
               minWidth: 'auto',
+              fontSize: '0.85rem',
               '&:hover': { background: 'transparent', textDecoration: 'underline' },
             }}
           >
-            Sign up
+            Register
           </Button>
         </Box>
       </Paper>

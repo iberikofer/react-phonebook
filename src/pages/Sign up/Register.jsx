@@ -15,28 +15,28 @@ import {
   InputAdornment,
   IconButton,
 } from '@mui/material';
-import PersonIcon from '@mui/icons-material/Person';
-import EmailIcon from '@mui/icons-material/Email';
-import LockIcon from '@mui/icons-material/Lock';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import PersonAddAltOutlinedIcon from '@mui/icons-material/PersonAddAltOutlined';
 
 const textFieldSx = {
   '& .MuiOutlinedInput-root': {
     color: '#f8fafc',
-    borderRadius: '14px',
-    backgroundColor: 'rgba(30, 41, 59, 0.7)',
-    '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.15)' },
-    '&:hover fieldset': { borderColor: '#a855f7' },
-    '&.Mui-focused fieldset': { borderColor: '#a855f7' },
+    borderRadius: '10px',
+    backgroundColor: '#161925',
+    '& fieldset': { borderColor: 'rgba(255, 255, 255, 0.1)' },
+    '&:hover fieldset': { borderColor: 'rgba(245, 158, 11, 0.4)' },
+    '&.Mui-focused fieldset': { borderColor: '#f59e0b' },
     '& input:-webkit-autofill': {
-      WebkitBoxShadow: '0 0 0 1000px #1e293b inset !important',
+      WebkitBoxShadow: '0 0 0 1000px #161925 inset !important',
       WebkitTextFillColor: '#f8fafc !important',
     },
   },
-  '& .MuiInputLabel-root': { color: '#94a3b8' },
-  '& .MuiInputLabel-root.Mui-focused': { color: '#c084fc' },
+  '& .MuiInputLabel-root': { color: '#94a3b8', fontSize: '0.9rem' },
+  '& .MuiInputLabel-root.Mui-focused': { color: '#fbbf24' },
 };
 
 const Register = () => {
@@ -70,7 +70,7 @@ const Register = () => {
     <Container maxWidth="xs" sx={{ mt: { xs: 3, sm: 6 }, mb: 6 }}>
       <Paper
         elevation={0}
-        className="glass-card"
+        className="phonebook-card"
         sx={{
           p: { xs: 3, sm: 4 },
           display: 'flex',
@@ -80,26 +80,26 @@ const Register = () => {
       >
         <Box
           sx={{
-            width: 56,
-            height: 56,
-            borderRadius: '16px',
-            background: 'linear-gradient(135deg, #6366f1, #a855f7)',
+            width: 50,
+            height: 50,
+            borderRadius: '12px',
+            background: 'rgba(245, 158, 11, 0.1)',
+            border: '1px solid rgba(245, 158, 11, 0.3)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             mb: 2,
-            boxShadow: '0 8px 20px rgba(99, 102, 241, 0.35)',
           }}
         >
-          <PersonAddIcon sx={{ color: '#fff', fontSize: 30 }} />
+          <PersonAddAltOutlinedIcon sx={{ color: '#fbbf24', fontSize: 26 }} />
         </Box>
 
-        <Typography variant="h5" sx={{ fontWeight: 800, color: '#f8fafc', mb: 1, textAlign: 'center' }}>
-          Create Account
+        <Typography variant="h5" sx={{ fontWeight: 800, color: '#f8fafc', mb: 0.75, textAlign: 'center', letterSpacing: '-0.02em' }}>
+          Create Directory
         </Typography>
 
-        <Typography variant="body2" sx={{ color: '#94a3b8', mb: 3, textAlign: 'center' }}>
-          Join Phonebook to manage all your contacts seamlessly
+        <Typography variant="body2" sx={{ color: '#94a3b8', mb: 3, textAlign: 'center', fontSize: '0.875rem' }}>
+          Register to establish your personal contact ledger
         </Typography>
 
         {isAuthError && (
@@ -108,32 +108,32 @@ const Register = () => {
             onClose={() => dispatch(clearAuthError())}
             sx={{
               width: '100%',
-              mb: 3,
-              borderRadius: '12px',
-              backgroundColor: 'rgba(239, 68, 68, 0.15)',
+              mb: 2.5,
+              borderRadius: '8px',
+              backgroundColor: 'rgba(239, 68, 68, 0.12)',
               color: '#fca5a5',
               border: '1px solid rgba(239, 68, 68, 0.3)',
-              '& .MuiAlert-icon': { color: '#f87171' },
+              fontSize: '0.825rem',
             }}
           >
-            Registration failed. Check if email is unique and password is at least 7 characters long.
+            Registration error. Verify that email is unique and password has at least 7 characters.
           </Alert>
         )}
 
-        <Box component="form" onSubmit={handleRegister} sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 2.5 }}>
+        <Box component="form" onSubmit={handleRegister} sx={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 2.25 }}>
           <TextField
             fullWidth
             required
-            label="First & Last Name"
+            label="Full Name"
             name="name"
             value={name}
             onChange={e => setName(e.target.value)}
             variant="outlined"
-            placeholder="John Doe"
+            placeholder="e.g. John Doe"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <PersonIcon sx={{ color: '#a855f7' }} />
+                  <PersonOutlineIcon sx={{ color: '#fbbf24', fontSize: '1.2rem' }} />
                 </InputAdornment>
               ),
             }}
@@ -149,11 +149,11 @@ const Register = () => {
             value={email}
             onChange={e => setEmail(e.target.value)}
             variant="outlined"
-            placeholder="example@mail.com"
+            placeholder="e.g. john@mail.com"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <EmailIcon sx={{ color: '#a855f7' }} />
+                  <EmailOutlinedIcon sx={{ color: '#fbbf24', fontSize: '1.2rem' }} />
                 </InputAdornment>
               ),
             }}
@@ -170,11 +170,11 @@ const Register = () => {
             onChange={e => setPassword(e.target.value)}
             variant="outlined"
             helperText="Minimum 7 characters"
-            FormHelperTextProps={{ sx: { color: '#94a3b8', fontSize: '0.75rem', ml: 1 } }}
+            FormHelperTextProps={{ sx: { color: '#64748b', fontSize: '0.72rem', ml: 0.5, mt: 0.5 } }}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
-                  <LockIcon sx={{ color: '#a855f7' }} />
+                  <LockOutlinedIcon sx={{ color: '#fbbf24', fontSize: '1.2rem' }} />
                 </InputAdornment>
               ),
               endAdornment: (
@@ -182,9 +182,10 @@ const Register = () => {
                   <IconButton
                     onClick={() => setShowPassword(!showPassword)}
                     edge="end"
+                    size="small"
                     sx={{ color: '#94a3b8' }}
                   >
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                    {showPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
                   </IconButton>
                 </InputAdornment>
               ),
@@ -198,40 +199,42 @@ const Register = () => {
             variant="contained"
             disabled={isLoading}
             sx={{
-              mt: 1,
-              py: 1.4,
-              borderRadius: '14px',
+              mt: 0.5,
+              py: 1.35,
+              borderRadius: '10px',
               textTransform: 'none',
-              fontWeight: 800,
-              fontSize: '1rem',
-              background: 'linear-gradient(135deg, #6366f1, #a855f7, #ec4899)',
-              boxShadow: '0 8px 24px rgba(168, 85, 247, 0.4)',
+              fontWeight: 700,
+              fontSize: '0.95rem',
+              backgroundColor: '#f59e0b',
+              color: '#0c0d12',
+              boxShadow: '0 4px 14px rgba(245, 158, 11, 0.25)',
               '&:hover': {
-                background: 'linear-gradient(135deg, #4f46e5, #9333ea, #db2777)',
-                boxShadow: '0 10px 28px rgba(168, 85, 247, 0.55)',
+                backgroundColor: '#d97706',
+                boxShadow: '0 6px 18px rgba(245, 158, 11, 0.4)',
               },
             }}
           >
-            {isLoading ? 'Creating account...' : 'Sign Up'}
+            {isLoading ? 'Creating Ledger...' : 'Create Account'}
           </Button>
         </Box>
 
         <Box sx={{ mt: 3, display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Typography variant="body2" sx={{ color: '#94a3b8' }}>
-            Already have an account?
+          <Typography variant="body2" sx={{ color: '#94a3b8', fontSize: '0.85rem' }}>
+            Already registered?
           </Typography>
           <Button
             onClick={handleLogInNavigate}
             sx={{
-              color: '#38bdf8',
+              color: '#fbbf24',
               fontWeight: 700,
               textTransform: 'none',
               p: 0,
               minWidth: 'auto',
+              fontSize: '0.85rem',
               '&:hover': { background: 'transparent', textDecoration: 'underline' },
             }}
           >
-            Log in
+            Sign in
           </Button>
         </Box>
       </Paper>

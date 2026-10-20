@@ -17,11 +17,12 @@ const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     background: {
-      default: '#0f172a',
-      paper: 'rgba(30, 41, 59, 0.85)',
+      default: '#0c0d12',
+      paper: '#141721',
     },
     primary: {
-      main: '#a855f7',
+      main: '#f59e0b',
+      contrastText: '#0c0d12',
     },
     secondary: {
       main: '#38bdf8',
@@ -30,6 +31,7 @@ const darkTheme = createTheme({
       primary: '#f8fafc',
       secondary: '#94a3b8',
     },
+    divider: 'rgba(255, 255, 255, 0.08)',
   },
   typography: {
     fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
@@ -39,10 +41,19 @@ const darkTheme = createTheme({
       styleOverrides: {
         root: {
           backgroundImage: 'none',
-          backgroundColor: 'rgba(30, 41, 59, 0.85)',
-          backdropFilter: 'blur(16px)',
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          borderRadius: '20px',
+          backgroundColor: '#141721',
+          border: '1px solid rgba(255, 255, 255, 0.08)',
+          borderRadius: '14px',
+          boxShadow: '0 1px 3px rgba(0, 0, 0, 0.5), 0 8px 24px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05)',
+        },
+      },
+    },
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: 'none',
+          borderRadius: '10px',
+          fontWeight: 600,
         },
       },
     },
