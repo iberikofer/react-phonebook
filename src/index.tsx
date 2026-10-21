@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Provider } from 'react-redux';
 import { store, persistor } from 'redux/store';
 import ReactDOM from 'react-dom/client';
