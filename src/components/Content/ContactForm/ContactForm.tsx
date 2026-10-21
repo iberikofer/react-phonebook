@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useState, FormEvent } from 'react';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { getContacts } from 'redux/contacts/selectors';
 import { addContact } from 'redux/contacts/operations';
 import {
@@ -14,13 +14,13 @@ import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 const ContactForm = () => {
-  const contacts = useSelector(getContacts);
-  const dispatch = useDispatch();
+  const contacts = useAppSelector(getContacts);
+  const dispatch = useAppDispatch();
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     const checkPhonebookName =

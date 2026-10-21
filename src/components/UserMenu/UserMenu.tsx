@@ -1,18 +1,18 @@
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'redux/hooks';
 import { useAuth } from 'hooks/index';
 import { logOut } from 'redux/authentication/operations';
 import { Avatar, Button, Box, Typography } from '@mui/material';
 import LogoutIcon from '@mui/icons-material/Logout';
 
 const UserMenu = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { user } = useAuth();
 
   const handleLogOut = () => {
     dispatch(logOut());
   };
 
-  const getInitial = nameOrEmail => {
+  const getInitial = (nameOrEmail: string | null) => {
     if (!nameOrEmail) return 'U';
     return nameOrEmail.charAt(0).toUpperCase();
   };

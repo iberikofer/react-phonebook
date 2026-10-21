@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useAuth } from 'hooks/index';
 import {
@@ -19,7 +20,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import LoginIcon from '@mui/icons-material/Login';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 
-const Home = () => {
+const Home: FC = () => {
   const { user, isLoggedIn } = useAuth();
 
   return (

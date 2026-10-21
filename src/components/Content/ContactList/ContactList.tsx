@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import {
   getContacts,
   getFilter,
@@ -23,29 +23,30 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CheckIcon from '@mui/icons-material/Check';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import SearchOffIcon from '@mui/icons-material/SearchOff';
+import type { Contact } from '../../../types';
 
 const ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
 const ContactList = () => {
-  const rawContacts = useSelector(getContacts);
-  const contacts = useMemo(() => rawContacts || [], [rawContacts]);
-  const filter = useSelector(getFilter) || '';
-  const isLoading = useSelector(loadingStatus);
-  const error = useSelector(errorMesage);
-  const dispatch = useDispatch();
+  const rawContacts = useAppSelector(getContacts);
+  const contacts: Contact[] = useMemo(() => rawContacts || [], [rawContacts]);
+  const filter = useAppSelector(getFilter) || '';
+  const isLoading = useAppSelector(loadingStatus);
+  const error = useAppSelector(errorMesage);
+  const dispatch = useAppDispatch();
 
-  const [selectedLetter, setSelectedLetter] = useState(null);
-  const [copiedId, setCopiedId] = useState(null);
+  const [selectedLetter, setSelectedLetter] = useState<string | null>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-  const onDelete = contactId => {
+  const onDelete = (contactId: string) => {
     dispatch(deleteContact(contactId));
   };
 
-  const handleCopy = (id, number) => {
+  const handleCopy = (id: string, number: string) => {
     navigator.clipboard?.writeText(number);
     setCopiedId(id);
     setTimeout(() => {
@@ -55,7 +56,7 @@ const ContactList = () => {
 
   // Letters present in existing contacts
   const availableLetters = useMemo(() => {
-    const letters = new Set();
+    const letters = new Set<string>();
     contacts.forEach(c => {
       const first = (c.name || '').trim().charAt(0).toUpperCase();
       if (first) letters.add(first);
@@ -84,7 +85,7 @@ const ContactList = () => {
 
   // Group contacts by first letter
   const groupedContacts = useMemo(() => {
-    const groups = {};
+    const groups: Record<string, Contact[]> = {};
     filteredContacts.forEach(contact => {
       const first = (contact.name || '').trim().charAt(0).toUpperCase() || '#';
       if (!groups[first]) groups[first] = [];
@@ -93,7 +94,7 @@ const ContactList = () => {
     return groups;
   }, [filteredContacts]);
 
-  const getInitials = name => {
+  const getInitials = (name: string) => {
     if (!name) return '?';
     const parts = name.trim().split(' ');
     if (parts.length >= 2) {
@@ -103,7 +104,7 @@ const ContactList = () => {
   };
 
   // Dignified mineral color palette for contact avatars
-  const getAvatarStyle = name => {
+  const getAvatarStyle = (name: string) => {
     const palette = [
       { bg: 'rgba(245, 158, 11, 0.15)', text: '#fbbf24', border: 'rgba(245, 158, 11, 0.4)' }, // Amber
       { bg: 'rgba(56, 189, 248, 0.15)', text: '#38bdf8', border: 'rgba(56, 189, 248, 0.4)' }, // Sky
@@ -382,11 +383,12 @@ const ContactList = () => {
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
               {groupedContacts[letterGroup].map((contact, index) => {
                 const avatarStyle = getAvatarStyle(contact.name);
-                const isCopied = copiedId === contact.id;
+                const contactId = contact.id || contact._id || `contact-${index}`;
+                const isCopied = copiedId === contactId;
 
                 return (
                   <Box
-                    key={contact.id || contact._id || `contact-${index}`}
+                    key={contactId}
                     sx={{
                       p: 1.5,
                       borderRadius: '10px',
@@ -484,7 +486,7 @@ const ContactList = () => {
 
                       <Tooltip title={isCopied ? 'Copied!' : 'Copy Number'} arrow>
                         <IconButton
-                          onClick={() => handleCopy(contact.id, contact.number)}
+                          onClick={() => handleCopy(contactId, contact.number)}
                           size="small"
                           sx={{
                             color: isCopied ? '#34d399' : '#94a3b8',
@@ -505,7 +507,7 @@ const ContactList = () => {
 
                       <Tooltip title="Delete from Ledger" arrow>
                         <IconButton
-                          onClick={() => onDelete(contact.id)}
+                          onClick={() => onDelete(contactId)}
                           size="small"
                           sx={{
                             color: '#f87171',

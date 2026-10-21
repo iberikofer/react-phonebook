@@ -1,3 +1,4 @@
+import type { FC } from 'react';
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
@@ -5,7 +6,7 @@ import { Container, Grid, Paper, Box, Typography } from '@mui/material';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import ImportContactsIcon from '@mui/icons-material/ImportContacts';
 
-const Content = () => {
+const Content: FC = () => {
   return (
     <Container maxWidth="lg" sx={{ py: { xs: 2, md: 3 } }}>
       <Grid container spacing={3.5}>

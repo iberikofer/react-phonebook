@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
+import type { FC } from 'react';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import { Container, Paper, Typography, Button } from '@mui/material';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 
-export const NotFound = () => {
+export const NotFound: FC = () => {
   const navigate = useNavigate();
 
   useEffect(() => {

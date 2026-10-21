@@ -1,7 +1,8 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { register, logIn, logOut, refreshUser } from './operations';
+import type { AuthState, AuthResponse, User } from '../../types';
 
-const initialState = {
+const initialState: AuthState = {
   user: { name: null, email: null },
   token: null,
   isLoading: false,
@@ -24,7 +25,7 @@ const authSlice = createSlice({
         state.isLoading = true;
         state.isAuthError = false;
       })
-      .addCase(register.fulfilled, (state, { payload }) => {
+      .addCase(register.fulfilled, (state, { payload }: PayloadAction<AuthResponse>) => {
         state.isLoading = false;
         state.user = payload.user;
         state.token = payload.token;
@@ -33,13 +34,13 @@ const authSlice = createSlice({
       })
       .addCase(register.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.isAuthError = payload || true;
+        state.isAuthError = (payload as string) || true;
       })
       .addCase(logIn.pending, state => {
         state.isLoading = true;
         state.isAuthError = false;
       })
-      .addCase(logIn.fulfilled, (state, { payload }) => {
+      .addCase(logIn.fulfilled, (state, { payload }: PayloadAction<AuthResponse>) => {
         state.isLoading = false;
         state.user = payload.user;
         state.token = payload.token;
@@ -48,7 +49,7 @@ const authSlice = createSlice({
       })
       .addCase(logIn.rejected, (state, { payload }) => {
         state.isLoading = false;
-        state.isAuthError = payload || true;
+        state.isAuthError = (payload as string) || true;
       })
       .addCase(logOut.pending, state => {
         state.isLoading = true;
@@ -73,7 +74,7 @@ const authSlice = createSlice({
         state.isLoading = true;
         state.isAuthError = false;
       })
-      .addCase(refreshUser.fulfilled, (state, { payload }) => {
+      .addCase(refreshUser.fulfilled, (state, { payload }: PayloadAction<User>) => {
         state.user = payload;
         state.isLoggedIn = true;
         state.isRefreshing = false;
@@ -89,4 +90,3 @@ const authSlice = createSlice({
 
 export const { clearAuthError } = authSlice.actions;
 export const authReducer = authSlice.reducer;
-

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
+import type { FC } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'redux/hooks';
 import { useAuth } from 'hooks/index';
 import { refreshUser } from 'redux/authentication/operations';
 import Header from './Header/Header';
@@ -60,11 +61,11 @@ const darkTheme = createTheme({
   },
 });
 
-export const App = () => {
+export const App: FC = () => {
   const navigate = useNavigate();
   const { isLoggedIn, isRefreshing, isLoading } = useAuth();
+  const dispatch = useAppDispatch();
 
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import type { FC, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'redux/hooks';
 import { register } from 'redux/authentication/operations';
 import { clearAuthError } from 'redux/authentication/authSlice';
 import { useAuth } from 'hooks/index';
@@ -39,8 +40,8 @@ const textFieldSx = {
   '& .MuiInputLabel-root.Mui-focused': { color: '#fbbf24' },
 };
 
-const Register = () => {
-  const dispatch = useDispatch();
+const Register: FC = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { isAuthError, isLoading } = useAuth();
 
@@ -56,7 +57,7 @@ const Register = () => {
     };
   }, [dispatch]);
 
-  const handleRegister = e => {
+  const handleRegister = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(register({ name, email, password }));
   };

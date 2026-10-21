@@ -1,4 +1,5 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { ChangeEvent } from 'react';
+import { useAppDispatch, useAppSelector } from 'redux/hooks';
 import { setFilter } from 'redux/contacts/slices/filterSlice';
 import { getFilter } from 'redux/contacts/selectors';
 import { Box, TextField, InputAdornment, IconButton } from '@mui/material';
@@ -6,10 +7,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
 const Filter = () => {
-  const dispatch = useDispatch();
-  const filter = useSelector(getFilter);
+  const dispatch = useAppDispatch();
+  const filter = useAppSelector(getFilter);
 
-  const handleInputChange = e => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     dispatch(setFilter(e.target.value));
   };
 
