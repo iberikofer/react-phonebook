@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+﻿import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename);
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/react-phonebook/',
+  base: process.env.VERCEL ? '/' : '/react-phonebook/',
   resolve: {
     alias: [
       // Only match 'redux/...' so bare 'redux' package is resolved from node_modules

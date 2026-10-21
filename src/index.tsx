@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Provider } from 'react-redux';
 import { store, persistor } from 'redux/store';
 import ReactDOM from 'react-dom/client';
@@ -17,7 +17,7 @@ ReactDOM.createRoot(rootElement).render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter
-          basename="/react-phonebook"
+          basename={import.meta.env.BASE_URL}
           future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
         >
           <App />
